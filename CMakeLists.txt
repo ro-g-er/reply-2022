@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 include_directories(src)
 
 add_executable(reply_2022
+        src/main.cpp
         src/Character.cpp
         src/Character.h
         src/Game.cpp
