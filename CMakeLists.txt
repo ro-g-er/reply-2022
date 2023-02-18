@@ -10,4 +10,6 @@ add_executable(reply_2022
         src/Character.cpp
         src/Character.h
         src/Game.cpp
-        src/Game.h)
+        src/Game.h
+        src/Demon.cpp
+        src/Demon.h)

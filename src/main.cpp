@@ -2,6 +2,8 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Hello world" << std::endl;
+    Game game;
+    game.read("../input.txt");
+    game.print();
     return 0;
 }

@@ -1,4 +1,7 @@
 #include "Game.h"
+#include "Demon.h"
+#include <fstream>
+#include <iostream>
 
 int Game::getTurnsAvailable() const {
     return turnsAvailable;
@@ -6,11 +9,21 @@ int Game::getTurnsAvailable() const {
 void Game::setTurnsAvailable(int turnsAvailable) {
     Game::turnsAvailable = turnsAvailable;
 }
-int Game::getTurnsRecover() const {
-    return turnsRecover;
+Game::Game() {}
+
+Game::~Game() {
 }
-void Game::setTurnsRecover(int turnsRecover) {
-    Game::turnsRecover = turnsRecover;
+int Game::getInitialCharacterStamina() const {
+    return initialCharacterStamina;
+}
+void Game::setInitialCharacterStamina(int initialCharacterStamina) {
+    Game::initialCharacterStamina = initialCharacterStamina;
+}
+int Game::getMaximumStamina() const {
+    return maximumStamina;
+}
+void Game::setMaximumStamina(int maximumStamina) {
+    Game::maximumStamina = maximumStamina;
 }
 int Game::getNumDemons() const {
     return numDemons;
@@ -18,13 +31,34 @@ int Game::getNumDemons() const {
 void Game::setNumDemons(int numDemons) {
     Game::numDemons = numDemons;
 }
-int Game::getNumTurns() const {
-    return numTurns;
-}
-void Game::setNumTurns(int numTurns) {
-    Game::numTurns = numTurns;
-}
-Game::Game() {}
 
-Game::~Game() {
+void Game::read(std::string nameFile) {
+    std::ifstream myFile;
+    myFile.open(nameFile, std::ios::in);
+    if (!myFile.is_open()) {
+        std::cout << "Reading of" << nameFile << "failed";
+        return;
+    }
+    myFile >> initialCharacterStamina;
+    myFile >> maximumStamina;
+    myFile >> turnsAvailable;
+    myFile >> numDemons;
+    std::string line;
+    std::getline(myFile, line);
+    while (std::getline(myFile, line)) {
+        Demon d;
+        d.read(line);
+        demons.emplace_back(d);
+    }
+    myFile.close();
+}
+
+void Game::print() {
+    std::cout << "Initial Character Stamina: " << initialCharacterStamina << std::endl;
+    std::cout << "Maximum Stamina:" << maximumStamina << std::endl;
+    std::cout << "Turns Available: " << turnsAvailable << std::endl;
+    std::cout << "Number of Demons: " << numDemons << std::endl;
+    for (auto d: demons) {
+        d.print();
+    }
 }

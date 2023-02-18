@@ -3,27 +3,30 @@
 
 #include "Character.h"
 #include "Demon.h"
+#include <string>
 #include <vector>
 
 class Game {
+    int initialCharacterStamina;
+    int maximumStamina;
     int turnsAvailable;
-    int turnsRecover;
     int numDemons;
-    int numTurns;
     Character pandora;
-    std::vector<Demon> Demons;
+    std::vector<Demon> demons;
 
 public:
     Game();
     virtual ~Game();
     int getTurnsAvailable() const;
     void setTurnsAvailable(int turnsAvailable);
-    int getTurnsRecover() const;
-    void setTurnsRecover(int turnsRecover);
+    int getInitialCharacterStamina() const;
+    void setInitialCharacterStamina(int initialCharacterStamina);
+    int getMaximumStamina() const;
+    void setMaximumStamina(int maximumStamina);
     int getNumDemons() const;
     void setNumDemons(int numDemons);
-    int getNumTurns() const;
-    void setNumTurns(int numTurns);
+    void read(std::string nameFile);
+    void print();
 };
 
 
