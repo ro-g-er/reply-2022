@@ -14,6 +14,8 @@ class Game {
     std::vector<Demon> Demons;
 
 public:
+    Game();
+    virtual ~Game();
     int getTurnsAvailable() const;
     void setTurnsAvailable(int turnsAvailable);
     int getTurnsRecover() const;

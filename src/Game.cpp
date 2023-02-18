@@ -24,3 +24,7 @@ int Game::getNumTurns() const {
 void Game::setNumTurns(int numTurns) {
     Game::numTurns = numTurns;
 }
+Game::Game() {}
+
+Game::~Game() {
+}

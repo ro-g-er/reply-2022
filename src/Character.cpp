@@ -8,4 +8,4 @@ void Character::setStamina(int stamina) {
 }
 Character::~Character() {
 }
-Character::Character(int stamina) : stamina(stamina) {}
+Character::Character() {}

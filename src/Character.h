@@ -6,10 +6,8 @@ class Character {
     int stamina;
 
 public:
+    Character();
     virtual ~Character();
-    explicit Character(int stamina);
-
-public:
     int getStamina() const;
     void setStamina(int stamina);
 };
