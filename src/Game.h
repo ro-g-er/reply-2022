@@ -2,6 +2,8 @@
 #define REPLY_2022_GAME_H
 
 #include "Character.h"
+#include "Demon.h"
+#include <vector>
 
 class Game {
     int turnsAvailable;
@@ -9,6 +11,7 @@ class Game {
     int numDemons;
     int numTurns;
     Character pandora;
+    std::vector<Demon> Demons;
 
 public:
     int getTurnsAvailable() const;
