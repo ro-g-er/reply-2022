@@ -72,3 +72,20 @@ void Game::print() {
         d.print();
     }
 }
+
+Demon Game::selectDemonToFace() {
+    Demon demonToFace;
+    for (auto d: demonsToFace) {
+        if (d.getStaminaConsumption() > pandora.getStamina()) {
+            continue;
+        }
+        demonToFace = d;
+    }
+    return demonToFace;
+}
+
+void Game::logic() {
+    for (int i = 0; i < turnsAvailable; i++) {
+        Demon demonToFace = selectDemonToFace();
+    }
+}

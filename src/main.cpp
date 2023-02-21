@@ -7,6 +7,7 @@ int main(int argc, char **argv) {
         std::cout << "Number of parameters must be equal to 1" << std::endl;
     } else {
         game.read(argv[1]);
+        game.logic();
         game.print();
     }
     return 0;

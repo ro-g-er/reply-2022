@@ -28,6 +28,8 @@ public:
     void setNumDemons(int numDemons);
     void read(std::string nameFile);
     void print();
+    void logic();
+    Demon selectDemonToFace();
 };
 
 
