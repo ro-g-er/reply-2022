@@ -89,6 +89,9 @@ void Game::faceDemon(int indexDemonToFace) {
     int turnsRecover = demonsToFace.at(indexDemonToFace).getTurnsRecover();
     int staminaRecover = demonsToFace.at(indexDemonToFace).getStaminaRecover();
     turnsAndStaminaRecover.emplace_back(std::make_pair(turnsRecover, staminaRecover));
+    //implement logic for fragments
+    demonsDefeated.emplace_back(demonsToFace.at(indexDemonToFace));
+    demonsToFace.erase(demonsToFace.begin()+indexDemonToFace);
 }
 
 
