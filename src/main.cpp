@@ -1,9 +1,13 @@
 #include "Game.h"
 #include <iostream>
 
-int main() {
+int main(int argc, char **argv) {
     Game game;
-    game.read("../input.txt");
-    game.print();
+    if (argc != 2) {
+        std::cout << "Number of parameters must be equal to 1" << std::endl;
+    } else {
+        game.read(argv[1]);
+        game.print();
+    }
     return 0;
 }
