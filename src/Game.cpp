@@ -84,6 +84,14 @@ Demon Game::selectDemonToFace() {
     return demonToFace;
 }
 
+Demon Game::faceDemon(Demon demonToFace) {
+    pandora.setStamina(pandora.getStamina() - demonToFace.getStaminaConsumption());
+    int turnsRecover = demonToFace.getTurnsRecover();
+    int staminaRecover = demonToFace.getStaminaRecover();
+    turnsAndStaminaRecover.emplace_back(std::make_pair(turnsRecover, staminaRecover));
+}
+
+
 void Game::logic() {
     for (int i = 0; i < turnsAvailable; i++) {
         Demon demonToFace = selectDemonToFace();

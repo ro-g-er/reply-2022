@@ -14,6 +14,7 @@ class Game {
     Character pandora;
     std::vector<Demon> demonsToFace;
     std::vector<Demon> demonsDefeated;
+    std::vector<std::pair<int, int>> turnsAndStaminaRecover;
 
 public:
     Game();
@@ -29,8 +30,11 @@ public:
     void read(std::string nameFile);
     void print();
     void logic();
-    Demon selectDemonToFace();
-};
 
+private:
+    Demon selectDemonToFace();
+    Demon faceDemon(Demon demonToFace);
+
+}
 
 #endif //REPLY_2022_GAME_H
