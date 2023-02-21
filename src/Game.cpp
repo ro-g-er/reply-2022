@@ -94,9 +94,9 @@ void Game::faceDemon(int indexDemonToFace) {
     demonsToFace.erase(demonsToFace.begin()+indexDemonToFace);
 }
 
-
 void Game::logic() {
     for (int i = 0; i < turnsAvailable; i++) {
+        recoverStamina();
         int indexDemonToFace = selectDemonToFace();
         if (indexDemonToFace == -1) {
             continue;
@@ -104,3 +104,12 @@ void Game::logic() {
         faceDemon(indexDemonToFace);
     }
 }
+
+void Game::recoverStamina() {
+    for (int i = 0; i<turnsAndStaminaRecover.size(); i++) {
+        turnsAndStaminaRecover[i].first--;
+        if (turnsAndStaminaRecover[i].first==0){
+            pandora.setStamina(pandora.getStamina()+turnsAndStaminaRecover[i].second);
+        }
+    }
+};

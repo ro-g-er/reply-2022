@@ -34,6 +34,7 @@ public:
 private:
     int selectDemonToFace();
     void faceDemon(int indexDemonToFace);
+    void recoverStamina();
 };
 
 #endif //REPLY_2022_GAME_H
