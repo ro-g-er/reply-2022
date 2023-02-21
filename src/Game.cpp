@@ -73,27 +73,28 @@ void Game::print() {
     }
 }
 
-Demon Game::selectDemonToFace() {
-    Demon demonToFace;
-    for (auto d: demonsToFace) {
-        if (d.getStaminaConsumption() > pandora.getStamina()) {
+int Game::selectDemonToFace() {
+    int indexDemonToFace{};
+    for (int i = 0; i < demonsToFace.size(); i++) {
+        if (demonsToFace[i].getStaminaConsumption() > pandora.getStamina()) {
             continue;
         }
-        demonToFace = d;
+        indexDemonToFace = i;
     }
-    return demonToFace;
+    return indexDemonToFace;
 }
 
-Demon Game::faceDemon(Demon demonToFace) {
-    pandora.setStamina(pandora.getStamina() - demonToFace.getStaminaConsumption());
-    int turnsRecover = demonToFace.getTurnsRecover();
-    int staminaRecover = demonToFace.getStaminaRecover();
+void Game::faceDemon(int indexDemonToFace) {
+    pandora.setStamina(pandora.getStamina() - demonsToFace.at(indexDemonToFace).getStaminaConsumption());
+    int turnsRecover = demonsToFace.at(indexDemonToFace).getTurnsRecover();
+    int staminaRecover = demonsToFace.at(indexDemonToFace).getStaminaRecover();
     turnsAndStaminaRecover.emplace_back(std::make_pair(turnsRecover, staminaRecover));
 }
 
 
 void Game::logic() {
     for (int i = 0; i < turnsAvailable; i++) {
-        Demon demonToFace = selectDemonToFace();
+        int indexDemonToFace = selectDemonToFace();
+        faceDemon(indexDemonToFace);
     }
 }

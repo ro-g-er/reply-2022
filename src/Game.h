@@ -32,9 +32,8 @@ public:
     void logic();
 
 private:
-    Demon selectDemonToFace();
-    Demon faceDemon(Demon demonToFace);
-
-}
+    int selectDemonToFace();
+    void faceDemon(int indexDemonToFace);
+};
 
 #endif //REPLY_2022_GAME_H
