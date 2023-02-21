@@ -39,7 +39,9 @@ void Game::read(std::string nameFile) {
         std::cout << "Reading of" << nameFile << "failed";
         return;
     }
-    myFile >> initialCharacterStamina;
+    int tempStamina {};
+    myFile >> tempStamina;
+    pandora.setStamina(tempStamina);
     myFile >> maximumStamina;
     myFile >> turnsAvailable;
     myFile >> numDemons;
@@ -54,7 +56,7 @@ void Game::read(std::string nameFile) {
 }
 
 void Game::print() {
-    std::cout << "Initial Character Stamina: " << initialCharacterStamina << std::endl;
+    std::cout << "Character Stamina: " << pandora.getStamina() << std::endl;
     std::cout << "Maximum Stamina:" << maximumStamina << std::endl;
     std::cout << "Turns Available: " << turnsAvailable << std::endl;
     std::cout << "Number of Demons: " << numDemons << std::endl;
