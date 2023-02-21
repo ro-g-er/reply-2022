@@ -47,10 +47,13 @@ void Game::read(std::string nameFile) {
     myFile >> numDemons;
     std::string line;
     std::getline(myFile, line);
+    int i{};
     while (std::getline(myFile, line)) {
         Demon d;
         d.read(line);
-        demons.emplace_back(d);
+        d.setIndex(i);
+        i++;
+        demonsToFace.emplace_back(d);
     }
     myFile.close();
 }
@@ -60,7 +63,12 @@ void Game::print() {
     std::cout << "Maximum Stamina:" << maximumStamina << std::endl;
     std::cout << "Turns Available: " << turnsAvailable << std::endl;
     std::cout << "Number of Demons: " << numDemons << std::endl;
-    for (auto d: demons) {
+    std::cout << "Demons to Face:" << std::endl;
+    for (auto d: demonsToFace) {
+        d.print();
+    }
+    std::cout << "Demons defeated:" << std::endl;
+    for (auto d: demonsDefeated) {
         d.print();
     }
 }

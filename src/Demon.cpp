@@ -58,3 +58,9 @@ void Demon::print() {
     }
     std::cout << std::endl;
 }
+int Demon::getIndex() const {
+    return index;
+}
+void Demon::setIndex(int index) {
+    Demon::index = index;
+}

@@ -12,7 +12,8 @@ class Game {
     int turnsAvailable;
     int numDemons;
     Character pandora;
-    std::vector<Demon> demons;
+    std::vector<Demon> demonsToFace;
+    std::vector<Demon> demonsDefeated;
 
 public:
     Game();

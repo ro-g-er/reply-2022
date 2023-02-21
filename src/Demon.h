@@ -10,6 +10,7 @@ class Demon {
     int staminaRecover;
     int turnsFragments;
     std::vector<int> numberFragments;
+    int index;
 
 public:
     Demon();
@@ -26,6 +27,8 @@ public:
     void setNumberFragments(const std::vector<int> &numberFragments);
     void read(std::string line);
     void print();
+    int getIndex() const;
+    void setIndex(int index);
 };
 
 
