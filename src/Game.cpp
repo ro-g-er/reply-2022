@@ -74,7 +74,7 @@ void Game::print() {
 }
 
 int Game::selectDemonToFace() {
-    int indexDemonToFace{};
+    int indexDemonToFace{-1};
     for (int i = 0; i < demonsToFace.size(); i++) {
         if (demonsToFace[i].getStaminaConsumption() > pandora.getStamina()) {
             continue;
@@ -98,6 +98,9 @@ void Game::faceDemon(int indexDemonToFace) {
 void Game::logic() {
     for (int i = 0; i < turnsAvailable; i++) {
         int indexDemonToFace = selectDemonToFace();
+        if (indexDemonToFace == -1) {
+            continue;
+        }
         faceDemon(indexDemonToFace);
     }
 }
