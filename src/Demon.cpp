@@ -4,6 +4,7 @@
 #include <string>
 
 Demon::Demon() : staminaConsumption{}, turnsRecover{}, turnsFragments{}, staminaRecover{}, index{}, countFragments{} {}
+
 int Demon::getStaminaConsumption() const {
     return staminaConsumption;
 }
@@ -16,13 +17,13 @@ int Demon::getStaminaRecover() const {
     return staminaRecover;
 }
 
-
 const std::queue<int> &Demon::getNumberFragments() const {
     return numberFragments;
 }
+
 Demon::~Demon() = default;
 
-void Demon::read(const std::string& textDemon, int numTurns) {
+void Demon::read(const std::string &textDemon, int numTurns) {
     int num;
     std::istringstream ss(textDemon);
     ss >> staminaConsumption >> turnsRecover >> staminaRecover >> turnsFragments;
@@ -47,12 +48,15 @@ void Demon::print() {
     }
     std::cout << std::endl;
 }
+
 int Demon::getIndex() const {
     return index;
 }
+
 void Demon::setIndex(int i) {
     Demon::index = i;
 }
+
 int Demon::getCountFragments() const {
     return countFragments;
 }

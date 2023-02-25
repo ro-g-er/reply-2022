@@ -19,7 +19,7 @@ public:
     [[nodiscard]] int getStaminaConsumption() const;
     [[nodiscard]] int getTurnsRecover() const;
     [[nodiscard]] int getStaminaRecover() const;
-    void read(const std::string& textDemon, int numTurns);
+    void read(const std::string &textDemon, int numTurns);
     void print();
     [[nodiscard]] int getIndex() const;
     void setIndex(int i);

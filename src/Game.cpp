@@ -7,14 +7,14 @@ Game::Game() : maximumStamina{}, turnsAvailable{}, numDemons{} {}
 
 Game::~Game() = default;
 
-void Game::read(const std::string& nameFile) {
+void Game::read(const std::string &nameFile) {
     std::ifstream myFile;
     myFile.open(nameFile, std::ios::in);
     if (!myFile.is_open()) {
         std::cout << "Reading of " << nameFile << "failed";
         return;
     }
-    int tempStamina {};
+    int tempStamina{};
     myFile >> tempStamina;
     pandora.setStamina(tempStamina);
     myFile >> maximumStamina;
@@ -78,7 +78,7 @@ void Game::collectFragments() {
         pandora.setFragmentsCollected(pandora.getFragmentsCollected() + fragments.at(i).front());
         fragments.at(i).pop();
     }
-    fragments.erase(std::remove_if(fragments.begin(), fragments.end(), [](const std::queue<int>& q) { return q.empty(); }), fragments.end());
+    fragments.erase(std::remove_if(fragments.begin(), fragments.end(), [](const std::queue<int> &q) { return q.empty(); }), fragments.end());
 }
 
 void Game::logic() {
@@ -96,25 +96,25 @@ void Game::logic() {
 }
 
 void Game::recoverStamina() {
-    for (auto & i : turnsAndStaminaRecover) {
+    for (auto &i: turnsAndStaminaRecover) {
         i.first--;
-        if (i.first==0){
-            pandora.setStamina(pandora.getStamina()+i.second);
+        if (i.first == 0) {
+            pandora.setStamina(pandora.getStamina() + i.second);
         }
     }
 }
 
-void Game::write(const std::string& nameFile) {
+void Game::write(const std::string &nameFile) {
     std::ofstream myFile;
     myFile.open(nameFile, std::ios::out);
     if (!myFile.is_open()) {
         std::cout << "Writing to " << nameFile << "failed";
         return;
     }
-    for (const auto& d : demonsDefeated) {
+    for (const auto &d: demonsDefeated) {
         myFile << d.getIndex() << std::endl;
     }
-    for (const auto& d : demonsToFace) {
+    for (const auto &d: demonsToFace) {
         myFile << d.getIndex() << std::endl;
     }
     myFile.close();

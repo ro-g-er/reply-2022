@@ -19,11 +19,11 @@ class Game {
 public:
     Game();
     virtual ~Game();
-    void read(const std::string& nameFile);
+    void read(const std::string &nameFile);
     void print();
     void logic();
     void collectFragments();
-    void write(const std::string& nameFile);
+    void write(const std::string &nameFile);
 
 private:
     int selectDemonToFace();
@@ -31,4 +31,5 @@ private:
     void recoverStamina();
 };
 
-#endif //REPLY_2022_GAME_H
+
+#endif//REPLY_2022_GAME_H
