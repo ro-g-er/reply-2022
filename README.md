@@ -3,7 +3,7 @@ Solution for Reply Code Challenge 2022 developed in C++20.
 
 # Bugs and Issues
 
-Found a bug or an issue? [Report it here](https://github.com/ro-g-er/reply-2022).
+Found a bug or an issue? [Report it here](https://github.com/ro-g-er/reply-2022/issues).
 
 # Creator
 
