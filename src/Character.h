@@ -9,10 +9,10 @@ class Character {
 public:
     Character();
     virtual ~Character();
-    int getStamina() const;
-    void setStamina(int stamina);
-    int getFragmentsCollected() const;
-    void setFragmentsCollected(int fragmentsCollected);
+    [[nodiscard]] int getStamina() const;
+    void setStamina(int s);
+    [[nodiscard]] int getFragmentsCollected() const;
+    void setFragmentsCollected(int fC);
 };
 
 

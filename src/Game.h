@@ -7,7 +7,6 @@
 #include <vector>
 
 class Game {
-    int initialCharacterStamina;
     int maximumStamina;
     int turnsAvailable;
     int numDemons;
@@ -20,19 +19,11 @@ class Game {
 public:
     Game();
     virtual ~Game();
-    int getTurnsAvailable() const;
-    void setTurnsAvailable(int turnsAvailable);
-    int getInitialCharacterStamina() const;
-    void setInitialCharacterStamina(int initialCharacterStamina);
-    int getMaximumStamina() const;
-    void setMaximumStamina(int maximumStamina);
-    int getNumDemons() const;
-    void setNumDemons(int numDemons);
-    void read(std::string nameFile);
+    void read(const std::string& nameFile);
     void print();
     void logic();
     void collectFragments();
-    void write(std::string nameFile);
+    void write(const std::string& nameFile);
 
 private:
     int selectDemonToFace();

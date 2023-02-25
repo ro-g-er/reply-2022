@@ -16,22 +16,15 @@ class Demon {
 public:
     Demon();
     virtual ~Demon();
-    int getStaminaConsumption() const;
-    void setStaminaConsumption(int staminaConsumption);
-    int getTurnsRecover() const;
-    void setTurnsRecover(int turnsRecover);
-    int getStaminaRecover() const;
-    void setStaminaRecover(int staminaRecover);
-    int getTurnsFragments() const;
-    void setTurnsFragments(int turnsFragments);
-    void read(std::string textDemon, int numTurns);
+    [[nodiscard]] int getStaminaConsumption() const;
+    [[nodiscard]] int getTurnsRecover() const;
+    [[nodiscard]] int getStaminaRecover() const;
+    void read(const std::string& textDemon, int numTurns);
     void print();
-    int getIndex() const;
-    void setIndex(int index);
-    void setNumberFragments(const std::queue<int> &numberFragments);
-    const std::queue<int> &getNumberFragments() const;
-    int getCountFragments() const;
-    void setCountFragments(int countFragments);
+    [[nodiscard]] int getIndex() const;
+    void setIndex(int i);
+    [[nodiscard]] const std::queue<int> &getNumberFragments() const;
+    [[nodiscard]] int getCountFragments() const;
 };
 
 

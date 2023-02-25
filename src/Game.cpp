@@ -3,36 +3,11 @@
 #include <fstream>
 #include <iostream>
 
-int Game::getTurnsAvailable() const {
-    return turnsAvailable;
-}
-void Game::setTurnsAvailable(int turnsAvailable) {
-    Game::turnsAvailable = turnsAvailable;
-}
-Game::Game() {}
+Game::Game() : maximumStamina{}, turnsAvailable{}, numDemons{} {}
 
-Game::~Game() {
-}
-int Game::getInitialCharacterStamina() const {
-    return initialCharacterStamina;
-}
-void Game::setInitialCharacterStamina(int initialCharacterStamina) {
-    Game::initialCharacterStamina = initialCharacterStamina;
-}
-int Game::getMaximumStamina() const {
-    return maximumStamina;
-}
-void Game::setMaximumStamina(int maximumStamina) {
-    Game::maximumStamina = maximumStamina;
-}
-int Game::getNumDemons() const {
-    return numDemons;
-}
-void Game::setNumDemons(int numDemons) {
-    Game::numDemons = numDemons;
-}
+Game::~Game() = default;
 
-void Game::read(std::string nameFile) {
+void Game::read(const std::string& nameFile) {
     std::ifstream myFile;
     myFile.open(nameFile, std::ios::in);
     if (!myFile.is_open()) {
@@ -92,7 +67,7 @@ void Game::faceDemon(int indexDemonToFace) {
     pandora.setStamina(pandora.getStamina() - demonsToFace.at(indexDemonToFace).getStaminaConsumption());
     int turnsRecover = demonsToFace.at(indexDemonToFace).getTurnsRecover();
     int staminaRecover = demonsToFace.at(indexDemonToFace).getStaminaRecover();
-    turnsAndStaminaRecover.emplace_back(std::make_pair(turnsRecover, staminaRecover));
+    turnsAndStaminaRecover.emplace_back(turnsRecover, staminaRecover);
     fragments.push_back(demonsToFace.at(indexDemonToFace).getNumberFragments());
     demonsDefeated.emplace_back(demonsToFace.at(indexDemonToFace));
     demonsToFace.erase(demonsToFace.begin() + indexDemonToFace);
@@ -103,7 +78,7 @@ void Game::collectFragments() {
         pandora.setFragmentsCollected(pandora.getFragmentsCollected() + fragments.at(i).front());
         fragments.at(i).pop();
     }
-    fragments.erase(std::remove_if(fragments.begin(), fragments.end(), [](std::queue<int> q) { return q.empty(); }), fragments.end());
+    fragments.erase(std::remove_if(fragments.begin(), fragments.end(), [](const std::queue<int>& q) { return q.empty(); }), fragments.end());
 }
 
 void Game::logic() {
@@ -121,25 +96,25 @@ void Game::logic() {
 }
 
 void Game::recoverStamina() {
-    for (int i = 0; i<turnsAndStaminaRecover.size(); i++) {
-        turnsAndStaminaRecover[i].first--;
-        if (turnsAndStaminaRecover[i].first==0){
-            pandora.setStamina(pandora.getStamina()+turnsAndStaminaRecover[i].second);
+    for (auto & i : turnsAndStaminaRecover) {
+        i.first--;
+        if (i.first==0){
+            pandora.setStamina(pandora.getStamina()+i.second);
         }
     }
 }
 
-void Game::write(std::string nameFile) {
+void Game::write(const std::string& nameFile) {
     std::ofstream myFile;
     myFile.open(nameFile, std::ios::out);
     if (!myFile.is_open()) {
         std::cout << "Writing to " << nameFile << "failed";
         return;
     }
-    for (auto d : demonsDefeated) {
+    for (const auto& d : demonsDefeated) {
         myFile << d.getIndex() << std::endl;
     }
-    for (auto d : demonsToFace) {
+    for (const auto& d : demonsToFace) {
         myFile << d.getIndex() << std::endl;
     }
     myFile.close();
