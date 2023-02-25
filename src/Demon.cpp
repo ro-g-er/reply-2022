@@ -3,7 +3,7 @@
 #include <sstream>
 #include <string>
 
-Demon::Demon() {}
+Demon::Demon() : countFragments{} {}
 int Demon::getStaminaConsumption() const {
     return staminaConsumption;
 }
@@ -28,21 +28,24 @@ int Demon::getTurnsFragments() const {
 void Demon::setTurnsFragments(int turnsFragments) {
     Demon::turnsFragments = turnsFragments;
 }
-Demon::~Demon() {
-}
-const std::vector<int> &Demon::getNumberFragments() const {
-    return numberFragments;
-}
-void Demon::setNumberFragments(const std::vector<int> &numberFragments) {
+void Demon::setNumberFragments(const std::queue<int> &numberFragments) {
     Demon::numberFragments = numberFragments;
 }
+const std::queue<int> &Demon::getNumberFragments() const {
+    return numberFragments;
+}
+Demon::~Demon() {
+}
 
-void Demon::read(std::string line) {
+void Demon::read(std::string textDemon, int numTurns) {
     int num;
-    std::istringstream ss(line);
+    std::istringstream ss(textDemon);
     ss >> staminaConsumption >> turnsRecover >> staminaRecover >> turnsFragments;
-    while (ss >> num) {
-        numberFragments.push_back(num);
+    int count{};
+    while (ss >> num && count < numTurns) {
+        numberFragments.push(num);
+        countFragments += num;
+        count++;
     }
 }
 
@@ -51,10 +54,11 @@ void Demon::print() {
     std::cout << "Turns to Recover: " << turnsRecover << std::endl;
     std::cout << "Stamina to Recover: " << staminaRecover << std::endl;
     std::cout << "Turns for Fragments: " << turnsFragments << std::endl;
-
     std::cout << "Number of Fragments: ";
-    for (int i = 0; i < numberFragments.size(); i++) {
-        std::cout << numberFragments[i] << " ";
+    std::queue<int> tmpQueue = numberFragments;
+    while (!tmpQueue.empty()) {
+        std::cout << tmpQueue.front() << " ";
+        tmpQueue.pop();
     }
     std::cout << std::endl;
 }
@@ -63,4 +67,10 @@ int Demon::getIndex() const {
 }
 void Demon::setIndex(int index) {
     Demon::index = index;
+}
+int Demon::getCountFragments() const {
+    return countFragments;
+}
+void Demon::setCountFragments(int countFragments) {
+    Demon::countFragments = countFragments;
 }

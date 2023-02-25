@@ -8,4 +8,10 @@ void Character::setStamina(int stamina) {
 }
 Character::~Character() {
 }
-Character::Character() {}
+int Character::getFragmentsCollected() const {
+    return fragmentsCollected;
+}
+void Character::setFragmentsCollected(int fragmentsCollected) {
+    Character::fragmentsCollected = fragmentsCollected;
+}
+Character::Character() : stamina{}, fragmentsCollected{} {}

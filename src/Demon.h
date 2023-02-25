@@ -1,16 +1,17 @@
 #ifndef REPLY_2022_DEMON_H
 #define REPLY_2022_DEMON_H
 
+#include <queue>
 #include <string>
-#include <vector>
 
 class Demon {
     int staminaConsumption;
     int turnsRecover;
     int staminaRecover;
     int turnsFragments;
-    std::vector<int> numberFragments;
+    std::queue<int> numberFragments;
     int index;
+    int countFragments;
 
 public:
     Demon();
@@ -23,12 +24,14 @@ public:
     void setStaminaRecover(int staminaRecover);
     int getTurnsFragments() const;
     void setTurnsFragments(int turnsFragments);
-    const std::vector<int> &getNumberFragments() const;
-    void setNumberFragments(const std::vector<int> &numberFragments);
-    void read(std::string line);
+    void read(std::string textDemon, int numTurns);
     void print();
     int getIndex() const;
     void setIndex(int index);
+    void setNumberFragments(const std::queue<int> &numberFragments);
+    const std::queue<int> &getNumberFragments() const;
+    int getCountFragments() const;
+    void setCountFragments(int countFragments);
 };
 
 

@@ -15,6 +15,7 @@ class Game {
     std::vector<Demon> demonsToFace;
     std::vector<Demon> demonsDefeated;
     std::vector<std::pair<int, int>> turnsAndStaminaRecover;
+    std::vector<std::queue<int>> fragments;
 
 public:
     Game();
@@ -30,6 +31,7 @@ public:
     void read(std::string nameFile);
     void print();
     void logic();
+    void collectFragments();
 
 private:
     int selectDemonToFace();

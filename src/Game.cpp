@@ -50,7 +50,7 @@ void Game::read(std::string nameFile) {
     int i{};
     while (std::getline(myFile, line)) {
         Demon d;
-        d.read(line);
+        d.read(line, turnsAvailable);
         d.setIndex(i);
         i++;
         demonsToFace.emplace_back(d);
@@ -75,11 +75,15 @@ void Game::print() {
 
 int Game::selectDemonToFace() {
     int indexDemonToFace{-1};
-    for (int i = 0; i < demonsToFace.size(); i++) {
+    int max{};
+    for (int i{}; i < demonsToFace.size(); i++) {
         if (demonsToFace[i].getStaminaConsumption() > pandora.getStamina()) {
             continue;
         }
-        indexDemonToFace = i;
+        if (max < demonsToFace.at(i).getCountFragments()) {
+            indexDemonToFace = i;
+            max = demonsToFace.at(i).getCountFragments();
+        }
     }
     return indexDemonToFace;
 }
@@ -89,20 +93,31 @@ void Game::faceDemon(int indexDemonToFace) {
     int turnsRecover = demonsToFace.at(indexDemonToFace).getTurnsRecover();
     int staminaRecover = demonsToFace.at(indexDemonToFace).getStaminaRecover();
     turnsAndStaminaRecover.emplace_back(std::make_pair(turnsRecover, staminaRecover));
-    //implement logic for fragments
+    fragments.push_back(demonsToFace.at(indexDemonToFace).getNumberFragments());
     demonsDefeated.emplace_back(demonsToFace.at(indexDemonToFace));
-    demonsToFace.erase(demonsToFace.begin()+indexDemonToFace);
+    demonsToFace.erase(demonsToFace.begin() + indexDemonToFace);
+}
+
+void Game::collectFragments() {
+    for (int i{}; i < fragments.size(); i++) {
+        pandora.setFragmentsCollected(pandora.getFragmentsCollected() + fragments.at(i).front());
+        fragments.at(i).pop();
+    }
+    fragments.erase(std::remove_if(fragments.begin(), fragments.end(), [](std::queue<int> q) { return q.empty(); }), fragments.end());
 }
 
 void Game::logic() {
-    for (int i = 0; i < turnsAvailable; i++) {
+    for (int i{}; i < turnsAvailable; i++) {
         recoverStamina();
         int indexDemonToFace = selectDemonToFace();
         if (indexDemonToFace == -1) {
+            collectFragments();
             continue;
         }
         faceDemon(indexDemonToFace);
+        collectFragments();
     }
+    std::cout << "Fragments collected: " << pandora.getFragmentsCollected() << std::endl;
 }
 
 void Game::recoverStamina() {

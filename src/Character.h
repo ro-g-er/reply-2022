@@ -4,12 +4,15 @@
 
 class Character {
     int stamina;
+    int fragmentsCollected;
 
 public:
     Character();
     virtual ~Character();
     int getStamina() const;
     void setStamina(int stamina);
+    int getFragmentsCollected() const;
+    void setFragmentsCollected(int fragmentsCollected);
 };
 
 
