@@ -36,7 +36,7 @@ void Game::read(std::string nameFile) {
     std::ifstream myFile;
     myFile.open(nameFile, std::ios::in);
     if (!myFile.is_open()) {
-        std::cout << "Reading of" << nameFile << "failed";
+        std::cout << "Reading of " << nameFile << "failed";
         return;
     }
     int tempStamina {};
@@ -127,4 +127,20 @@ void Game::recoverStamina() {
             pandora.setStamina(pandora.getStamina()+turnsAndStaminaRecover[i].second);
         }
     }
-};
+}
+
+void Game::write(std::string nameFile) {
+    std::ofstream myFile;
+    myFile.open(nameFile, std::ios::out);
+    if (!myFile.is_open()) {
+        std::cout << "Writing to " << nameFile << "failed";
+        return;
+    }
+    for (auto d : demonsDefeated) {
+        myFile << d.getIndex() << std::endl;
+    }
+    for (auto d : demonsToFace) {
+        myFile << d.getIndex() << std::endl;
+    }
+    myFile.close();
+}

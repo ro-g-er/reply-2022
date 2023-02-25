@@ -1,5 +1,3 @@
 to do:
-Implement logic for fragments
-Implement writing to output file
 Remove warnings
 Reformat all code

@@ -32,6 +32,7 @@ public:
     void print();
     void logic();
     void collectFragments();
+    void write(std::string nameFile);
 
 private:
     int selectDemonToFace();
